@@ -9,7 +9,8 @@ const App = () => {
 	return (
 		<div>
 			<Scroll />
-			<Widget props={<Pin />} />
+			<Widget />
+			<Pin />
 		</div>
 	);
 };
