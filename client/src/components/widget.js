@@ -14,21 +14,16 @@ class Widget extends Component {
 
 	componentDidMount() {
 		axios
-			.get("https://vildes-pinterest-clone.herokuapp.com/pins/index#", {
-				headers: {
-					"Access-Control-Allow-Origin": "*"
-				}
-			})
-			.then(response => this.setState({ data: response }));
+			.get("http://localhost:3000/pins/index")
+			.then(response => this.setState({ data: response.data }));
 	}
-
 	renderWidgets() {
 		return this.state.data.map(widget => {
 			return <Pin key={widget.id} data={widget} />;
 		});
 	}
 	render() {
-		return <div>{this.renderWidgets()}</div>;
+		return <div>{this.state.data}</div>;
 	}
 }
 
