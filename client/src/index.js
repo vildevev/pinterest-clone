@@ -8,9 +8,7 @@ import Widget from "./components/widget";
 const App = () => {
 	return (
 		<div>
-			<Scroll />
 			<Widget />
-			<Pin />
 		</div>
 	);
 };
