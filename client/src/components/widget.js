@@ -19,7 +19,7 @@ class Widget extends Component {
 	}
 	renderWidgets() {
 		return this.state.data.map(widget => {
-			return <Pin key={widget.id} data={widget} />;
+			return <Pin key={widget.id} data={widget.description} />;
 		});
 	}
 	render() {
