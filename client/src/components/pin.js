@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-const Pin = ({ data: { description } }) => {
+const Pin = ({ data: { images } }) => {
 	return (
 		<div>
-			<p>{description}</p>
+			<img src={images["136x136"].url} />
 		</div>
 	);
 };

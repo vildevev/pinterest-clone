@@ -18,11 +18,11 @@ class Widget extends Component {
 			.then(response => this.setState({ data: response.data }));
 	}
 	renderWidgets() {
-		for (var object in this.state.data) {
+		return Object.keys(this.state.data).map(index => {
 			return (
-				<Pin key={this.state.data[object].id} data={this.state.data[object]} />
+				<Pin key={this.state.data[index].id} data={this.state.data[index]} />
 			);
-		}
+		});
 	}
 	render() {
 		return <div>{this.renderWidgets()}</div>;
