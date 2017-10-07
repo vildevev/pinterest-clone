@@ -17,13 +17,13 @@ class Widget extends Component {
 			.get("http://localhost:3000/pins/index")
 			.then(response => this.setState({ data: response.data }));
 	}
-	renderWidgets() {
-		return this.state.data.map(widget => {
-			return <Pin key={widget.id} data={widget.description} />;
-		});
-	}
+	// renderWidgets() {
+	// 	return this.state.data.map(widget => {
+	// 		return <Pin key={widget.id} data={widget.description} />;
+	// 	});
+	// }
 	render() {
-		return <div>{this.state.data}</div>;
+		return <div>{this.state.data[0]}</div>;
 	}
 }
 
