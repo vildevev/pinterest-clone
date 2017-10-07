@@ -8,7 +8,7 @@ class Widget extends Component {
 		super(props);
 
 		this.state = {
-			data: []
+			data: {}
 		};
 	}
 
@@ -17,13 +17,15 @@ class Widget extends Component {
 			.get("http://localhost:3000/pins/index")
 			.then(response => this.setState({ data: response.data }));
 	}
-	// renderWidgets() {
-	// 	return this.state.data.map(widget => {
-	// 		return <Pin key={widget.id} data={widget.description} />;
-	// 	});
-	// }
+	renderWidgets() {
+		for (var object in this.state.data) {
+			return (
+				<Pin key={this.state.data[object].id} data={this.state.data[object]} />
+			);
+		}
+	}
 	render() {
-		return <div>{this.state.data[0]}</div>;
+		return <div>{this.renderWidgets()}</div>;
 	}
 }
 
