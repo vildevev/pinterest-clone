@@ -12,11 +12,14 @@ class Widget extends Component {
 		};
 	}
 
+	// api/pins?results=25interval=1 (26-50)
+	// change your route so that it is under /pins/index
 	componentDidMount() {
 		axios
 			.get("http://localhost:3000")
 			.then(response => this.setState({ data: response.data }));
 	}
+
 	renderWidgets() {
 		return Object.keys(this.state.data).map(index => {
 			return (
@@ -25,8 +28,11 @@ class Widget extends Component {
 		});
 	}
 	render() {
-		return <div>{this.renderWidgets()}</div>;
+		return <div className="widget">{this.renderWidgets()}</div>;
 	}
 }
 
 export default Widget;
+
+// Make a <RenderPins /> component
+// Give components GREAT names

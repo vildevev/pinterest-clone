@@ -1,6 +1,15 @@
-div {
+.col {
 	display: inline-block;
 	float: left;
 	box-sizing: border-box;
 	padding: 5px;
+}
+
+img {
+	position: relative;
+}
+
+.widget {
+	column-count: 6;
+	column-gap: 1em;
 }
