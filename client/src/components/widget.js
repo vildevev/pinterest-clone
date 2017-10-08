@@ -14,7 +14,7 @@ class Widget extends Component {
 
 	componentDidMount() {
 		axios
-			.get("http://localhost:3000/pins/index")
+			.get("http://localhost:3000")
 			.then(response => this.setState({ data: response.data }));
 	}
 	renderWidgets() {

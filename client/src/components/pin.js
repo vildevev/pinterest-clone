@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 
-const Pin = ({ data: { images, title } }) => {
+const Pin = ({ data: { images } }) => {
 	return (
 		<div>
-			<img src={images["236x"].url} />
-			<p>{title}</p>
+			<div>
+				<img src={images["236x"].url} />
+			</div>
 		</div>
 	);
 };

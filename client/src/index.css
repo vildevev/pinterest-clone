@@ -1,0 +1,6 @@
+div {
+	display: inline-block;
+	float: left;
+	box-sizing: border-box;
+	padding: 5px;
+}
