@@ -1,106 +1,49 @@
-// switch up display to only set state of first 6 things
-// then fetchWidgets doesn't reset state but rather updates state adding the new things (next 6 thing)
-// new state causes rerender and more scroll to abound. YAYA funky scrool town
-
 import React, { Component } from "react";
 import axios from "axios";
-import Pin from "./pin";
+import List from "./list";
 
 class Widget extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			data: {}
+			data: [],
+			pageNum: 1
 		};
 
 		this.fetchWidgets = this.fetchWidgets.bind(this);
-		this.onClickSearch = this.onClickSearch.bind(this);
 	}
-
-	// api/pins?results=25interval=1 (26-50)
-	// change your route so that it is under /pins/index
-	// componentDidMount() {
-	// 	axios
-	// 		.get("http://localhost:3000/pins/index")
-	// 		.then(response => this.setState({ data: response.data }));
-	// }
-
-	onClickSearch = e => {
-		e.preventDefault();
-		this.fetchWidgets();
-	};
-
-	fetchWidgets = () => {
-		console.log("fetching Widgets n Shit");
-		axios
-			.get("http://localhost:3000/pins/index")
-			.then(response => this.setState({ data: response.data }));
-	};
-
-	// renderWidgets() {
-	// 	return Object.keys(this.state.data).map(index => {
-	// 		return (
-	// 			<Pin key={this.state.data[index].id} data={this.state.data[index]} />
-	// 		);
-	// 	});
-	// }
-	render() {
-		return (
-			<div>
-				<form type="submit" onSubmit={this.onClickSearch}>
-					<button type="submit">Click</button>
-				</form>
-				<div className="widget">
-					{<List {...this.state} fetchWidgets={this.fetchWidgets} />}
-				</div>
-			</div>
-		);
-	}
-}
-
-class List extends Component {
-	renderWidgets() {
-		return Object.keys(this.props.data).map(index => {
-			return (
-				<Pin key={this.props.data[index].id} data={this.props.data[index]} />
-			);
-		});
-	}
-
-	onClickSearch = e => {
-		e.preventDefault();
-		this.fetchWidgets();
-	};
 
 	componentDidMount() {
-		window.addEventListener("scroll", this.onScroll, false);
+		this.fetchWidgets();
 	}
 
-	componentWillUnmount() {
-		window.removeEventListener("scroll", this.onScroll, false);
-	}
-
-	onScroll = () => {
-		if (
-			window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 &&
-			this.props.data.length
-		) {
-			console.log("bottom");
-			// this.fetchWidgets();
-			this.props.fetchWidgets();
+	updateState = response => {
+		if (this.state.pageNum !== 6) {
+			this.setState({
+				data: this.state.data.concat(response.data),
+				pageNum: (this.state.pageNum += 1)
+			});
+		} else {
+			this.setState({
+				data: this.state.data.concat(response.data),
+				pageNum: 1
+			});
 		}
 	};
 
+	fetchWidgets = () => {
+		axios
+			.get(`http://localhost:3000/pins?page=${this.state.pageNum}`)
+			.then(response => this.updateState(response));
+	};
+
 	render() {
-		const { data } = this.props;
-		return Object.keys(data).map(index => {
-			return <Pin key={data[index].id} data={data[index]} />;
-		});
+		return (
+			<div>{<List {...this.state} fetchWidgets={this.fetchWidgets} />}</div>
+		);
 	}
 }
 
 export default Widget;
 
-// Make a <RenderPins /> component
-// Give components GREAT names
