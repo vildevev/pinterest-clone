@@ -16,7 +16,7 @@ class Widget extends Component {
 	// change your route so that it is under /pins/index
 	componentDidMount() {
 		axios
-			.get("http://localhost:3000")
+			.get("http://localhost:3000/pins/index")
 			.then(response => this.setState({ data: response.data }));
 	}
 
