@@ -12,4 +12,6 @@
 
 * Front-end:
 
-	- Simple React app. See comments in code for explanation of the different components and their functionalities. 
+	- Simple React app. See comments in code for explanation of the different components and their functionalities. This is a simple representation of how the components are structured.
+
+	![mockup](client/public/mockup.png)
