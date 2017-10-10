@@ -1,5 +1,6 @@
 import React from "react";
 
+// A simple functional component that simply displays the image property of the json object
 const Pin = ({ data: { images, description } }) => {
 	return (
 		<div>

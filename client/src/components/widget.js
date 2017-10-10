@@ -6,6 +6,7 @@ class Widget extends Component {
 	constructor(props) {
 		super(props);
 
+		// the 'data' represents the objects that will currently be displayed on the page
 		this.state = {
 			data: [],
 			pageNum: 1
@@ -14,12 +15,14 @@ class Widget extends Component {
 		this.fetchWidgets = this.fetchWidgets.bind(this);
 	}
 
+	// Will get triggered when page loads
 	componentDidMount() {
 		this.fetchWidgets();
 	}
 
+	// Make sure it grabs the next objects by incrementing which 'page' is queried every time. If last one is reached (number 7 in this case) it will restart at 1 again.
 	updateState = response => {
-		if (this.state.pageNum !== 6) {
+		if (this.state.pageNum !== 7) {
 			this.setState({
 				data: this.state.data.concat(response.data),
 				pageNum: (this.state.pageNum += 1)
@@ -38,6 +41,7 @@ class Widget extends Component {
 			.then(response => this.updateState(response));
 	};
 
+	// Passes the objects to the list component as props, as well as the rendering of widgets function.
 	render() {
 		return (
 			<div>{<List {...this.state} fetchWidgets={this.fetchWidgets} />}</div>
@@ -46,4 +50,3 @@ class Widget extends Component {
 }
 
 export default Widget;
-

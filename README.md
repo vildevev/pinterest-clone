@@ -1,24 +1,14 @@
-# README
+# Vilde Vevatne's submission:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* How to run the application:
 
-Things you may want to cover:
+	- cd into the 'client' folder and run 'yarn run concurrently' (this will run both the front- and back-end server)
 
-* Ruby version
 
-* System dependencies
+* Back-end:
 
-* Configuration
+	- Simple rails app in 'API mode'. It only contains one route '/pins', it's function is to render the json, returning 8 objects at a time with the use of the 'will-paginate' gem. 
 
-* Database creation
+* Front-end:
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+	- Simple React app. See comments in code for explanation of the different components and their functionalities. 

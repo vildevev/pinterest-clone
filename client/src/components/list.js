@@ -10,6 +10,7 @@ class List extends Component {
 		window.removeEventListener("scroll", this.onScroll, false);
 	}
 
+	// if bottom of page is reached it queries the API again to get more objects.
 	onScroll = () => {
 		if (
 			window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 &&
@@ -19,6 +20,7 @@ class List extends Component {
 		}
 	};
 
+	// maps over the current objects, passing their data as props to a 'pin' component
 	render() {
 		const { data } = this.props;
 		return Object.keys(data).map(index => {
