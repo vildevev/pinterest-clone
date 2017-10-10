@@ -2,6 +2,7 @@
 
 * How to run the application:
 
+	- run 'bundle install' in root directory
 	- cd into the 'client' folder and run 'yarn run concurrently' (this will run both the front- and back-end server)
 
 
